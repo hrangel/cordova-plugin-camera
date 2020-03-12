@@ -19,7 +19,7 @@
  *
  */
 
-var HIGHEST_POSSIBLE_Z_INDEX = 2147483647;
+var LOWEST_POSSIBLE_Z_INDEX = -2147483647;
 
 function takePicture (success, error, opts) {
     if (opts && opts[2] === 1) {
@@ -27,7 +27,8 @@ function takePicture (success, error, opts) {
     } else {
         var input = document.createElement('input');
         input.style.position = 'relative';
-        input.style.zIndex = HIGHEST_POSSIBLE_Z_INDEX;
+        input.style.zIndex = LOWEST_POSSIBLE_Z_INDEX;
+        input.style.visibility = 'hidden';
         input.className = 'cordova-camera-select';
         input.type = 'file';
         input.name = 'files[]';
@@ -46,6 +47,7 @@ function takePicture (success, error, opts) {
         };
 
         document.body.appendChild(input);
+        input.click();
     }
 }
 
